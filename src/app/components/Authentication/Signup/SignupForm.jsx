@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -12,7 +12,7 @@ const SignupForm = () => {
   const [user, setUser] = useState({
     email: '',
     password: '',
-    username: '',  // Change 'fullName' to 'username'
+    username: '', // Change 'fullName' to 'username'
   });
   const [buttonDisable, setButtonDisable] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,15 +22,15 @@ const SignupForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();  // Prevent default form submission
+    e.preventDefault(); // Prevent default form submission
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/signup", user);
-      console.log("User", user);
-      console.log("signup success:", response.data);
+      const response = await axios.post('/api/users/signup', user);
+      console.log('User', user);
+      console.log('Signup success:', response.data);
       router.push('/login');
     } catch (error) {
-      console.log("Error in signup", error);
+      console.log('Error in signup', error);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -46,51 +46,63 @@ const SignupForm = () => {
   }, [user]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md mx-auto bg-white p-8 rounded-xl shadow-md items-center space-x-4">
-        <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className={`relative min-h-screen w-auto bg-white ${loading ? 'overflow-hidden' : ''}`}>
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <LoadingSpinner />
+        </div>
+      )}
+      <div className={`w-full max-w-md mx-auto bg-[#2f1e45] p-8 rounded-xl shadow-lg ${loading ? 'blur-sm' : ''}`}>
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">Sign Up</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Full Name</label>
+            <label htmlFor="username" className="block text-sm font-semibold text-white mb-1">Username</label>
             <input
               type="text"
-              name="username"  // Ensure this is 'username'
+              name="username"
               value={user.username}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border rounded-lg shadow-sm bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your username"
               required
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-sm font-semibold text-white mb-1">Email</label>
             <input
               type="email"
               name="email"
               value={user.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border rounded-lg shadow-sm bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your email"
               required
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block text-sm font-semibold text-white mb-1">Password</label>
             <input
               type="password"
               name="password"
               value={user.password}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 border rounded-lg shadow-sm bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your password"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-[#048567] text-white px-4 py-2 rounded-lg shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className={`w-full bg-[#048567] text-white px-4 py-3 rounded-lg shadow-sm hover:bg-[#036d57] focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150 ${buttonDisable ? 'opacity-50 cursor-not-allowed' : ''}`}
             disabled={buttonDisable}
           >
-            Signup
+            Sign Up
           </button>
-          <Link href="/login" className="text-blue-500 hover:underline">Already registered? Login here.</Link>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-white">
+              Already have an account? <Link href="/login" className="text-[#048567] hover:underline">Login</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>

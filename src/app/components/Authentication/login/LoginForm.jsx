@@ -19,7 +19,6 @@ const LoginForm = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
     setLoading(true); // Show the spinner
     try {
       await axios.post('/api/users/login', user);
@@ -41,7 +40,7 @@ const LoginForm = () => {
   }, [user]);
 
   return (
-    <div className={`relative min-h-screen flex items-center justify-center bg-white `}>
+    <div className={`relative min-h-screen   bg-white `}>
       <div className={`w-full max-w-md bg-[#2f1e45] p-8 rounded-lg shadow-md ${loading ? 'blur-sm' : ''}`}>
         <h2 className="text-2xl font-bold text-center text-white mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
