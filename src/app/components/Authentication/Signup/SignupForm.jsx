@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 
 const SignupForm = () => {
   const router = useRouter();
@@ -22,10 +23,12 @@ const SignupForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault()
     try {
       setLoading(true);
+      console.log('are you here')
       const response = await axios.post('/api/users/signup', user);
+      console.log('response',response)
       console.log('User', user);
       console.log('Signup success:', response.data);
       router.push('/login');
@@ -49,7 +52,7 @@ const SignupForm = () => {
     <div className={`relative min-h-screen w-auto bg-white ${loading ? 'overflow-hidden' : ''}`}>
       {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          <LoadingSpinner />
+          <LoadingSpinner/>
         </div>
       )}
       <div className={`w-full max-w-md mx-auto bg-[#2f1e45] p-8 rounded-xl shadow-lg ${loading ? 'blur-sm' : ''}`}>

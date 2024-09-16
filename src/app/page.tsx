@@ -11,12 +11,6 @@ export default function Home() {
   return (
     <main className="">
       <div>
-        <SubHeader/>
-      </div>
-      <div>
-        <Navbar/>
-      </div>
-      <div>
         <Slider/>
       </div>
       <div>

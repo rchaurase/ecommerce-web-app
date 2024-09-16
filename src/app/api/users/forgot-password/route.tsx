@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
     pass: "438501cfb3dafb"//❌
   }
 });
-export async function handler(request:NextRequest,response:NextResponse) {
+export async function POST(request:NextRequest,response:NextResponse) {
   if(request.method === 'post'){
     try {
       const reqBody = await request.json()

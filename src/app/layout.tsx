@@ -21,7 +21,7 @@ export default function RootLayout({
       <div className="relative min-h-screen">
         <SubHeader />
         <Navbar/>
-        <main className="pt-16 pb-16"> {/* Adjust padding to make room for the fixed header and footer */}
+        <main className=""> {/* Adjust padding to make room for the fixed header and footer */}
           {children}
         </main>
         <Footer/>

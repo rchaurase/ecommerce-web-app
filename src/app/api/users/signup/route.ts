@@ -9,10 +9,12 @@ connectDB()
 export async function POST(request:NextRequest){
   try {
     const reqBody = await request.json()
+    console.log(reqBody)
     const {username,email,password} = reqBody
     // validation
     console.log(reqBody);
     const user  = await User.findOne({email})
+    console.log('user:',user)
     if(user){
       return NextResponse.json({error:"User already exists"},{status:400})
     }
