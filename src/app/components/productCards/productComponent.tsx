@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import Link from 'next/link';
 import { Product } from '../../type/Type';
@@ -56,7 +57,8 @@ const ProductComponent: React.FC<ProductProp> = ({ product }) => {
             </div>
           </div>
           <div className="flex gap-4">
-            <button className="text-gray-600 font-bold bg-gray-200 px-4 py-2  hover:bg-[#058678] hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <button
+            className="text-gray-600 font-bold bg-gray-200 px-4 py-2  hover:bg-[#058678] hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
               Add to Cart
             </button>
             <button className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50">

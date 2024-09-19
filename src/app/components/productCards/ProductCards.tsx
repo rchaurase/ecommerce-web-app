@@ -1,7 +1,8 @@
 import React from 'react'
-import productData from '../../../data/data.json'
 import { FaHeart } from 'react-icons/fa6'
+import productData from '../../data/data.json'
 function ProductCards() {
+  
   const allProduct = productData.products
   return (
     <div className="max-w-7xl mx-auto p-4">

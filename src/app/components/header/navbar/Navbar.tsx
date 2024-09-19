@@ -9,7 +9,7 @@ import {
   MenubarTrigger,
 } from "@/app/components/ui/menubar"
 import { RiArrowDropDownLine } from 'react-icons/ri'
-
+import Link from 'next/link'
 
 function Navbar() {
   return (
@@ -19,7 +19,7 @@ function Navbar() {
         <Menubar>
           <MenubarMenu>
             <MenubarTrigger className='bg-[#048567] sm:pl-16'>
-              SHopping By Categories
+              Shopping By Categories
               <RiArrowDropDownLine className='ml-3  sm:w-12 h-8'/>
             </MenubarTrigger>
             <MenubarContent>
@@ -34,7 +34,7 @@ function Navbar() {
             </MenubarContent>
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger>Home</MenubarTrigger>
+            <MenubarTrigger><Link href='/'>Home</Link></MenubarTrigger>
           </MenubarMenu>
           <MenubarMenu>
             <MenubarTrigger>About</MenubarTrigger>

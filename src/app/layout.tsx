@@ -1,32 +1,36 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-const inter = Inter({ subsets: ["latin"] });
-import SubHeader from "./components/header/subheader/SubHeader";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/header/navbar/Navbar";
-export const metadata: Metadata = {
-  title: "Deep Sea Cart",
-  description: "Shop Deep, Save Big",
-};
+// import type { Metadata } from 'next';
+'use client'
+import { Inter } from 'next/font/google';
+import './globals.css';
+import SubHeader from './components/header/subheader/SubHeader';
+import Footer from './components/footer/Footer';
+import Navbar from './components/header/navbar/Navbar';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const inter = Inter({ subsets: ['latin'] });
+
+// export const metadata: Metadata = {
+//   title: 'Deep Sea Cart',
+//   description: 'Shop Deep, Save Big',
+// };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-    <body className={inter.className}>
-      <div className="relative min-h-screen">
-        <SubHeader />
-        <Navbar/>
-        <main className=""> {/* Adjust padding to make room for the fixed header and footer */}
-          {children}
-        </main>
-        <Footer/>
-      </div>
-    </body>
-  </html>
+      <body className={inter.className}>
+        <Provider store={store}>
+          <div className="relative min-h-screen">
+            <SubHeader />
+            <Navbar />
+            <main className="">
+              {/* Adjust padding to make room for the fixed header and footer */}
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </Provider>
+      </body>
+    </html>
   );
 }

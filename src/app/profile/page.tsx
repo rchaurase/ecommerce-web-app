@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-import { Button } from '../components/ui/button'
 
 export default function ProfilePage(){
   const router = useRouter()

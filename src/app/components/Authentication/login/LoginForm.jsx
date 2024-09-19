@@ -22,9 +22,10 @@ const LoginForm = () => {
     e.preventDefault()
     setLoading(true); // Show the spinner
     try {
-      await axios.post('/api/users/login', user);
-      console.log('login success');
-      router.push('/profile');
+      const response = await axios.post('/api/users/login', user);
+      console.log('response',response);
+      localStorage.setItem('authToken',response.data.token)
+      router.push('/');
     } catch (error) {
       console.error('Error in login', error);
     } finally {
