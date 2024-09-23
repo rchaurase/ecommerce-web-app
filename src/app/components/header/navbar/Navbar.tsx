@@ -18,9 +18,9 @@ function Navbar() {
         {/* menubar here */}
         <Menubar>
           <MenubarMenu>
-            <MenubarTrigger className='bg-[#048567] sm:pl-16'>
+            <MenubarTrigger className='bg-[#048567] h-[45px] flex items-center sm:pl-16 px-4'>
               Shopping By Categories
-              <RiArrowDropDownLine className='ml-3  sm:w-12 h-8'/>
+              <RiArrowDropDownLine className='ml-2 sm:w-6 sm:h-6 w-4 h-4' />
             </MenubarTrigger>
             <MenubarContent>
               <MenubarItem>
@@ -40,7 +40,6 @@ function Navbar() {
             <MenubarTrigger>About</MenubarTrigger>
           </MenubarMenu>
         </Menubar>
-
       </div>
     </div>
   )

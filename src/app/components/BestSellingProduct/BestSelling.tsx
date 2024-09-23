@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Product } from '../../type/Type';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import Image from 'next/image'; // Import the Next.js Image component
 import productData from '../../data/data.json'; // Adjust the path as needed
 
 interface ProductProp {
@@ -27,11 +28,15 @@ const ProductComponent: React.FC<ProductProp> = ({ product }) => {
     <Link href={`/product/${product.id}`} passHref>
       <div className="w-full">
         <div className="flex flex-row items-start">
-          <div className="w-32">
-            <img
-              src={String(product.images[0])}
-              alt={String(product.title)}
-              className="w-full h-24 rounded-lg"
+          <div className="w-32 relative">
+            <Image
+              src={product.images[0] ? String(product.images[0]) : '/fallback-image.png'}
+              alt={product.title ? String(product.title) : 'Product Image'}
+              width={128} // Set appropriate width
+              height={96} // Set appropriate height
+              className="rounded-lg object-cover"
+              placeholder="blur" // Optional: adds a blur effect until image loads
+              blurDataURL="/placeholder-image.png" // Optional: add a low-quality image placeholder
             />
           </div>
           <div className="w-full p-4">

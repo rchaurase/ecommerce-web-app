@@ -1,16 +1,26 @@
 import React from 'react'
 import { FaHeart } from 'react-icons/fa6'
 import productData from '../../data/data.json'
+import Image from 'next/image'
 function ProductCards() {
   
   const allProduct = productData.products
+  
   return (
     <div className="max-w-7xl mx-auto p-4">
       {
         allProduct.map((product)=>(
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-6 border border-gray-200       rounded-lg shadow-md bg-white">
+          <div key={product.id}
+
+          className="flex flex-col md:flex-row items-start md:items-center gap-6 border border-gray-200       rounded-lg shadow-md bg-white">
           <div className="w-full md:w-1/3">
-            <img src={product.images[0]} alt="Product" className="w-full h-64 object-cover rounded-lg" />
+          <Image
+            width={500}
+            height={500}
+            src={product.images[0] ? String(product.images[0]) : '/fallback-image.png'}
+            alt={product.title ? String(product.title) : 'Product Image'}
+            className="w-full h-64 object-cover rounded-lg"
+          />
           </div>
           <div className="w-full md:w-2/3 p-4">
             <h2 className="text-3xl font-bold mb-2">{product.title}</h2>

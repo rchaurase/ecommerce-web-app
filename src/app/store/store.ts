@@ -4,11 +4,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './slices/cartSlice';
 import wishlistReducer from './slices/wishlistSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import authReducer from './slices/authSlice';
+import userReducer from './slices/userSlice'
+import orderReducer from './slices/orderSlice'
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
-    wishlist: wishlistReducer
+    wishlist: wishlistReducer,
+    auth:authReducer,
+    users:userReducer,
+    orders:orderReducer
   }
 });
 

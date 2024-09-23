@@ -3,17 +3,24 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
-
 export default function ProfilePage(){
   const router = useRouter()
   const [data,setData] = useState<any>('')
   const getUserDetails = async()=>{
-    const res = await axios.post('/api/users/profile')
-    const userDetails = await res.data.data
-    console.log(res.data.data)
-    setData(userDetails)
+    try {
+      const token = localStorage.getItem('authToken')
+      console.log('Token for login from localstorage',token)
+      if(!token){
+        router.push('/login')
+        return
+      }
+      const res = await axios.post('/api/users/profile')
+      const userDetails = await res.data.data
+      setData(userDetails)
+    } catch (error) {
+      console.log('Error in login')
+    }
   }
-
   useEffect(()=>{
       getUserDetails()
   },[])
@@ -21,8 +28,10 @@ export default function ProfilePage(){
 
   const logout = async()=>{
   try {
+
     await axios.get('/api/users/logout')
     toast.success('logout successfully')
+    localStorage.removeItem('authToken')
     router.push('login')
   } catch (error:any) {
     console.log(error.message)
